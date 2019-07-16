@@ -16,6 +16,7 @@ const create = f => {
 
     worker.cleanup = () => {
       URL.revokeObjectURL(url);
+      worker.terminate();
     };
 
     return worker;
@@ -25,6 +26,8 @@ const create = f => {
 export const useWorker = (f, i) => {
   const worker = create(f);
 
+  if (!worker) { throw new Error('Need correctly parameter!') }
+
   worker.postMessage(i);
 
   return new Promise((resolve, reject) => {
@@ -32,5 +35,15 @@ export const useWorker = (f, i) => {
       if (worker.cleanup) worker.cleanup();
       resolve(e.data);
     };
+
+    worker.onerror = e => {
+      if (worker.cleanup) worker.cleanup();
+      reject(e.message)
+    }
+
+    worker.onmessageerror = () => {
+      if (worker.cleanup) worker.cleanup();
+      reject(e.message)
+    }
   });
 };
