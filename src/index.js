@@ -1,16 +1,16 @@
 const create = f => {
   if (f instanceof Worker) return f;
-  if (typeof f === "string" && f.endsWith(".js")) return new Worker(f);
-  if (typeof f === "function") {
+  if (typeof f === 'string' && f.endsWith('.js')) return new Worker(f);
+  if (typeof f === 'function') {
     const code = [
       `self.fn = ${f.toString()};`,
-      "self.onmessage = (e) => {",
-      " const r = self.fn(e.data);",
-      " self.postMessage(r);",
-      "}"
+      'self.onmessage = (e) => {',
+      ' const r = self.fn(e.data);',
+      ' self.postMessage(r);',
+      '}'
     ];
 
-    const blob = new Blob(code, { type: "text/javascript" });
+    const blob = new Blob(code, { type: 'text/javascript' });
     const url = URL.createObjectURL(blob);
     const worker = new Worker(url);
 
@@ -26,7 +26,9 @@ const create = f => {
 export const useWorker = (f, i) => {
   const worker = create(f);
 
-  if (!worker) { throw new Error('Need correctly parameter!') }
+  if (!worker) {
+    throw new Error('Need correctly parameter!');
+  }
 
   worker.postMessage(i);
 
@@ -38,12 +40,12 @@ export const useWorker = (f, i) => {
 
     worker.onerror = e => {
       if (worker.cleanup) worker.cleanup();
-      reject(e.message)
-    }
+      reject(e.message);
+    };
 
     worker.onmessageerror = () => {
       if (worker.cleanup) worker.cleanup();
-      reject(e.message)
-    }
+      reject(e.message);
+    };
   });
 };

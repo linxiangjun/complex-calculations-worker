@@ -1,7 +1,13 @@
 # complex-calculations-worker
 Use Web workers to allow complex computing without affecting page performance
 
-#### Usage
+## Install
+
+```bash
+npm install complex-calculations-worker
+```
+
+## Usage
 
 ```js
 import { useWorker } from 'complex-calculations-worker'

@@ -11,7 +11,7 @@
     "src/*.js"
   ],
   "keywords": [
-    "web-worker"
+    "webworker"
   ],
   "author": "linxiangjun <www.linxiangjun.com> (https://github.com/linxiangjun/)",
   "license": "MIT"
