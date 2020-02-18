@@ -1,6 +1,6 @@
 {
   "name": "complex-calculations-worker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use Web workers to allow complex computing without affecting page performance",
   "main": "src/index.js",
   "repository": {
@@ -14,5 +14,9 @@
     "webworker"
   ],
   "author": "linxiangjun <www.linxiangjun.com> (https://github.com/linxiangjun/)",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linxiangjun/complex-calculations-worker/issues"
+  },
+  "homepage": "https://github.com/linxiangjun/complex-calculations-worker#readme"
 }
